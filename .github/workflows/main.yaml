@@ -15,13 +15,15 @@ jobs:
       - name: Read URLs from file
         id: read-urls
         run: |
-          cat urls.txt
+          content=$(<urls.txt)
+          echo "::set-output name=urls::$content"
 
       - name: Download files
         run: |
+          content="${{ steps.read-urls.outputs.urls }}"
           while IFS= read -r url; do
             wget "$url"
-          done < urls.txt
+          done <<< "$content"
          
 
       - name: Add and commit downloaded files
