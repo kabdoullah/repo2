@@ -12,18 +12,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Read URLs from file
+        id: read-urls
+        run: |
+          cat urls.txt
+
       - name: Install curl and git
         run: |
           sudo apt update
           sudo apt install -y curl git
 
       - name: Download files from URLs
-        env:
-            CONTENT: $(cat "urls.txt")
         run: |
-          echo "$CONTENT"
-          echo "good"
+          while IFS= read -r url; do
+          curl -sSL "$url"
+          done < urls.txt
          
+
+
 
       - name: Add and commit downloaded files
         run: |

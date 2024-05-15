@@ -1,0 +1,33 @@
+# name: Download File from URLs
+
+# on:
+#   push:
+#     branches:
+#       - main  # Déclenche le workflow sur le push vers la branche principale
+
+# jobs:
+#   download:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+#       - name: Read URLs from file
+#         id: read-urls
+#         run: |
+#           cat urls.txt
+
+#       - name: Download files
+#         run: |
+#           while IFS= read -r url; do
+#             wget "$url"
+#           done < urls.txt
+
+#       - name: Commit and push changes
+#         uses: stefanzweifel/git-auto-commit-action@v4
+#         with:
+#           commit_message: "Auto-download files"
+#           branch: main
+#           commit_user_name: GitHub Actions
+#           commit_user_email: actions@github.com
