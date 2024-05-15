@@ -16,12 +16,15 @@ jobs:
       - name: Download files
         run: |
           content="$(cat urls.txt)"
-          mkdir -p downloaded_files
+          if [ ! -d downloaded_files ]; then
+            mkdir downloaded_files
+          fi
           cd downloaded_files
           while IFS= read -r url; do
             curl -O "$url"
           done <<< "$content"
          
+
       - name: Add and commit downloaded files
         run: |
           git config --global user.email "actions@github.com"
