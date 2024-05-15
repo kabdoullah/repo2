@@ -13,14 +13,9 @@ jobs:
         uses: actions/checkout@v4
 
 
-      - name: Read URLs from file
-        id: read-urls
-        run: |
-          content=$(<urls.txt)
-
       - name: Download files
         run: |
-          content="${{ steps.read-urls.outputs.urls }}"
+          content="$(cat urls.txt)"
           if [ ! -d downloaded_files ]; then
             mkdir downloaded_files
           fi
