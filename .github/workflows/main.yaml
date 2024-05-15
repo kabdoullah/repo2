@@ -16,13 +16,12 @@ jobs:
       - name: Download files
         run: |
           content="$(cat urls.txt)"
-          if [ ! -d downloaded_files ]; then
-            mkdir downloaded_files
-          fi
+          mkdir -p downloaded_files
           cd downloaded_files
-          while IFS= read -r url; do
-            echo $url
-            curl -O "$url"
+          while IFS= read -r url || [ -n "$url" ]; do
+            if [ -n "$url" ]; then
+                curl -O "$url"
+            fi
           done <<< "$content"
          
 
