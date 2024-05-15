@@ -31,8 +31,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
             name: downloaded-files
+            path: downloaded_files/
+      - name: Rename files
+        run: |
+          cd downloaded_files/
+          for file in *; do
+            filename=$(basename "$file")
+            timestamp=$(date +%Y-%m-%dT%H-%M-%S)
+            new_filename="$timestamp-$filename"
+            mv "$file" "$new_filename"
+          done
 
-      - name: Add and commit downloaded files (replace with your credentials)
+      - name: Add and commit downloaded files 
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
