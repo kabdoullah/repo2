@@ -32,13 +32,14 @@ jobs:
         with:
             name: downloaded-files
             path: downloaded_files/
+      
       - name: Rename files
         run: |
           cd downloaded_files/
           for file in *; do
             filename=$(basename "$file")
-            timestamp=$(date +%Y-%m-%dT%H-%M-%S)
-            new_filename="$timestamp-$filename"
+            timestamp=$(date +%Y%m%d_%H%M%S)
+            new_filename="file-$timestamp"
             mv "$file" "$new_filename"
           done
 
