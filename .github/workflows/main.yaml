@@ -1,4 +1,4 @@
-name: Download and Commit Files
+name: Download and Commit Files 
 
 on: [push]
 
