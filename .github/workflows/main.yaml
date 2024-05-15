@@ -12,11 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create directory for downloaded files if not exists
-        run: |
-          if [ ! -d downloaded_files ]; then
-            mkdir downloaded_files
-          fi
 
       - name: Read URLs from file
         id: read-urls
@@ -26,7 +21,9 @@ jobs:
       - name: Download files
         run: |
           content="${{ steps.read-urls.outputs.urls }}"
-          mkdir downloaded_files
+          if [ ! -d downloaded_files ]; then
+            mkdir downloaded_files
+          fi
           cd downloaded_files
           while IFS= read -r url; do
             curl -O "$url"
