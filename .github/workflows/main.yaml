@@ -25,6 +25,7 @@ jobs:
             mkdir downloaded_files
           fi
           cd downloaded_files
+          echo $content
           while IFS= read -r url; do
             echo $url
             curl -O "$url"
