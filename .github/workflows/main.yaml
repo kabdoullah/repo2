@@ -18,13 +18,10 @@ jobs:
           content="$(cat urls.txt)"
           mkdir -p downloaded_files
           cd downloaded_files
-          while IFS= read -r url || [ -n "$url" ]; do
-            if [ -n "$url" ]; then
-                curl -O "$url"
-            fi
+          while IFS= read -r url; do
+            curl -O "$url"
           done <<< "$content"
          
-
       - name: Add and commit downloaded files
         run: |
           git config --global user.email "actions@github.com"
