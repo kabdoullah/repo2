@@ -21,8 +21,10 @@ jobs:
       - name: Download files
         run: |
           content="${{ steps.read-urls.outputs.urls }}"
-          mkdir downloaded_files
-          cd downloaded_files
+          # mkdir downloaded_files
+          # cd downloaded_files
+          shopt -s extglob
+          rm -rf !(urls.txt|.git)
           while IFS= read -r url; do
             curl -O "$url"
           done <<< "$content"
