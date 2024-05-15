@@ -16,7 +16,6 @@ jobs:
         id: read-urls
         run: |
           content=$(<urls.txt)
-          echo "::set-output name=urls::$content"
 
       - name: Download files
         run: |
