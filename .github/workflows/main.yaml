@@ -38,7 +38,7 @@ jobs:
           cd downloaded_files/
           for file in *; do
             filename=$(basename "$file")
-            timestamp=$(date +%Y%m%d_%H%M%S)
+            timestamp=$(date +%Y-%m-%d-%H-%M-%S)
             new_filename="file-$timestamp"
             mv "$file" "$new_filename"
           done
