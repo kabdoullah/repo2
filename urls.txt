@@ -1,2 +1,1 @@
-https://training.github.com/downloads/github-git-cheat-sheet.pdf
 https://training.github.com/downloads/fr/github-git-cheat-sheet.pdf
