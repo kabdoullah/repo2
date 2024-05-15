@@ -38,6 +38,7 @@ jobs:
           cd downloaded_files/
           for file in *; do
             extension="${file##*.}"
+            echo "extension: $extension"
             timestamp=$(date +%Y-%m-%d-%H-%M-%S)
             new_filename="$filename-$timestamp.$extension"
             mv "$file" "$new_filename"
