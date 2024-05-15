@@ -37,7 +37,7 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          git add downloaded-files/*
+          git add .
           git commit -m "Add downloaded files with timestamps (YYYY-MM-DDTHH-MM-SS)"
           git push
          
