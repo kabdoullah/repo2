@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page not found - GitHub Education</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/error.css">
+</head>
+
+<body>
+  <img src="data:image/png;base64,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" class="logo" width="140" alt="GitHub Education" />
+  <p class="error-code">404</p>
+  <p>Page not found. <strong>Are you looking for one of these things?</strong></p>
+  <a href="/events" class="menuitem">Education events</a>
+  <a href="/discount" class="menuitem">Request a discount</a>
+  <footer>
+    <a href="https://twitter.com/githubeducation">@GitHubEducation</a>
+    &mdash;
+    <a href="https://github.com">GitHub</a>
+  </footer>
+</body>
+</html>
