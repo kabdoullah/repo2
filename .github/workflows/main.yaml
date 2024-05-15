@@ -5,7 +5,7 @@ on: [push]
     
 
 jobs:
-  download_and_commit:
+  download:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,19 +17,12 @@ jobs:
         run: |
           cat urls.txt
 
-      - name: Install curl and git
-        run: |
-          sudo apt update
-          sudo apt install -y curl git
-
-      - name: Download files from URLs
+      - name: Download files
         run: |
           while IFS= read -r url; do
-          curl -sSL "$url"
+            wget "$url"
           done < urls.txt
          
-
-
 
       - name: Add and commit downloaded files
         run: |
