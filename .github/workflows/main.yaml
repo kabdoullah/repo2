@@ -22,7 +22,7 @@ jobs:
         run: |
           content="${{ steps.read-urls.outputs.urls }}"
           while IFS= read -r url; do
-            wget "$url"
+            curl -O "$url"
           done <<< "$content"
          
 
