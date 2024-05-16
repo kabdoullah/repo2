@@ -12,24 +12,24 @@ jobs:
 
       - name: Download files
         run: |
-          content="$(cat urls.txt)"  # Lit le contenu du fichier urls.txt et stocke dans la variable content
-          mkdir -p downloaded_files  # Crée le répertoire downloaded_files s'il n'existe pas
-          cd downloaded_files  # Se déplace dans le répertoire downloaded_files
-          while IFS= read -r url; do  # Boucle pour lire chaque ligne (URL) de content
-            curl -O "$url"  # Télécharge le fichier à partir de l'URL avec curl
-          done <<< "$content"  # Fournit le contenu de la variable content à la boucle while
+          content="$(cat urls.txt)"  
+          mkdir -p downloaded_files  
+          cd downloaded_files  
+          while IFS= read -r url; do 
+            curl -O "$url"  
+          done <<< "$content"  
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4  # Action pour télécharger les fichiers en tant qu'artefact
+        uses: actions/upload-artifact@v4 
         with:
-          name: downloaded-files  # Nom de l'artefact
-          path: downloaded_files/  # Chemin vers le répertoire contenant les fichiers à archiver
+          name: downloaded-files  
+          path: downloaded_files/  
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4  # Action pour télécharger les artefacts précédemment archivés
+        uses: actions/download-artifact@v4
         with:
-          name: downloaded-files  # Nom de l'artefact à télécharger
-          path: downloaded_files/  # Chemin de destination pour extraire les artefacts téléchargés
+          name: downloaded-files  
+          path: downloaded_files/ 
 
       - name: Rename files
         run: |
