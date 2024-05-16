@@ -1,55 +1,50 @@
-name: Download and Commit Files 
+name: Download and Commit Files
 
 on: [push]
 
-    
 jobs:
   download:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 
 
       - name: Download files
         run: |
-          content="$(cat urls.txt)"
-          mkdir -p downloaded_files
-          cd downloaded_files
-          while IFS= read -r url; do
-            curl -O "$url"
-          done <<< "$content"
-      
+          content="$(cat urls.txt)"  # Lit le contenu du fichier urls.txt et stocke dans la variable content
+          mkdir -p downloaded_files  # Crée le répertoire downloaded_files s'il n'existe pas
+          cd downloaded_files  # Se déplace dans le répertoire downloaded_files
+          while IFS= read -r url; do  # Boucle pour lire chaque ligne (URL) de content
+            curl -O "$url"  # Télécharge le fichier à partir de l'URL avec curl
+          done <<< "$content"  # Fournit le contenu de la variable content à la boucle while
+
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4  # Action pour télécharger les fichiers en tant qu'artefact
         with:
-          name: downloaded-files
-          path: downloaded_files/
-      
+          name: downloaded-files  # Nom de l'artefact
+          path: downloaded_files/  # Chemin vers le répertoire contenant les fichiers à archiver
+
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4  # Action pour télécharger les artefacts précédemment archivés
         with:
-            name: downloaded-files
-            path: downloaded_files/
-      
+          name: downloaded-files  # Nom de l'artefact à télécharger
+          path: downloaded_files/  # Chemin de destination pour extraire les artefacts téléchargés
+
       - name: Rename files
         run: |
-          cd downloaded_files/
-          for file in *; do
-            extension="${file##*.}"
-            timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+          cd downloaded_files/ 
+          for file in *; do 
+            extension="${file##*.}"  
+            timestamp=$(date +%Y-%m-%d-%H-%M-%S)  
             new_filename="file-$timestamp.$extension"
-            mv "$file" "$new_filename"
+            mv "$file" "$new_filename" 
           done
 
       - name: Add and commit downloaded files 
         run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-          git add .
-          git commit -m "Add downloaded files with timestamps (YYYY-MM-DDTHH-MM-SS)"
-          git push
-         
-
-  
+          git config --global user.email "actions@github.com" 
+          git config --global user.name "GitHub Actions"  
+          git add .  
+          git commit -m "Add downloaded files with timestamps (YYYY-MM-DDTHH-MM-SS)" 
+          git push 
