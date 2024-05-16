@@ -2,5 +2,4 @@ https://training.github.com/downloads/github-git-cheat-sheet.pdf
 https://training.github.com/downloads/fr/github-git-cheat-sheet.pdf
 https://training.github.com/downloads/github-git-cheat-sheet.pdf
 https://githubtraining.github.io/training-manual/legacy-manual.pdf
-https://perso.univ-rennes1.fr/pierre.nerzic/SYS1A/Amphi%20SYS%202015%20partie%207%20:%20Intro%20%C3%A0%20Bash.pdf
 https://www.mode83.net/atelier/centre_ressources/crs_fichiers/Formation/OSR2K9/Linux/Programmation%20Bash.pdf
